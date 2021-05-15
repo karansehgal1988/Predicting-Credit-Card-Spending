@@ -235,11 +235,15 @@ variable_importance[order(variable_importance$Overall,decreasing = T),c("feature
 #Predictions for Training Data
 
 prediction_train = predict(model6,traindata)
+prediction_train = exp(prediction_train)
+traindata$totalspent =exp(traindata$totalspent)
 traindata = cbind(traindata,prediction_train)
 
 # Prediction for Test Dataset
 
 prediction_test = predict(model6,testdata)
+prediction_test = exp(prediction_test)
+testdata$totalspent =exp(testdata$totalspent)
 testdata = cbind(testdata,prediction_test)
 testdata
 
